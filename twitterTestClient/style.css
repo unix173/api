@@ -1,0 +1,111 @@
+html, body {
+    min-height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    background-color: #1872C0;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+
+.scroll-down{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:hidden
+}
+
+.scroll-down .message{
+    -webkit-transform:translate3d(0, 0, 0);
+    position:absolute;
+    top:100%;
+    z-index:0;
+    -webkit-transition-property:top,opacity;
+    -moz-transition-property:top,opacity;
+    -o-transition-property:top,opacity;
+    transition-property:top, opacity;
+    -webkit-transition-duration:1s;
+    -moz-transition-duration:1s;
+    -o-transition-duration:1s;
+    transition-duration:1s;
+    -webkit-transition-timing-function:ease-in-out;
+    -moz-transition-timing-function:ease-in-out;
+    -o-transition-timing-function:ease-in-out;
+    transition-timing-function:ease-in-out
+}
+
+.img-thumbnail {
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+    padding: 4px;
+    line-height: 1.42857;
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.tweet-text {
+    font-size: 2.8vmin;
+}
+.tweet-container{
+    position: relative;
+    display: inline-block;
+    width: 1024px;
+    height: 100vh;
+    margin: 0 auto;
+}
+.tweet {
+    width: 96%;
+    height: 17vh;
+    position: absolute;
+    border-radius: 4px;
+    padding: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    background: white;
+}
+
+#t0 {top: -20%; opacity: 0;}
+#t1 {top: 0; transition: top 1s ease;}
+#t2 {top: 20vh; transition: top 1s ease;}
+#t3 {top: 40vh; transition: top 1s ease;}
+#t4 {top: 60vh; transition: top 1s ease;}
+#t5 {top: 80vh; transition: top 1s ease;}
+#t6 {top: 100vh; transition: top 1s ease, opacity 1s ease; opacity: 0;}
+/* cubic-bezier(0.68, -0.55, 0.27, 1.55) */
+
+.start-stop{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+.item{
+    width: 8px;
+    height: 50px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    transition: all 0.3s ease-out;
+    float: left;
+    margin-right: 16px;
+}
+.third{
+    margin-left: -24px;
+}
+
+.new-second{
+    transform: translate(-4px,11px) rotate(60deg);
+}
+
+.new-third{
+    transform: translate(-4px,-11px) rotate(-60deg);
+}

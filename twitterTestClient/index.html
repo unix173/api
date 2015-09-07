@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="animate.js"></script>
+</head>
+
+<body ng-controller="AppController">
+
+<div class="tweet-container">
+    <div class="scroll-down">
+        <div ng-repeat="tweet in tweets">
+            <div class="tweet" id="{{id[$index]}}">
+                <div ng-class={{class}}>
+                    <figure class="pull-left media-object">
+                        <img class="img-thumbnail" src={{tweets[$index].user.profile_image_url}}>
+                    </figure>
+                    <div class="media-body">
+                        <div class="media-heading"><cite> <span class="tweet.user.name">{{$index}}{{tweets[$index].user.name}}</span>
+                            <small class="text-muted"><span
+                                    class="screen_name">{{tweets[$index].user.screen_name}}</span>
+                                <time class="time pull-right">
+                                    {{tweets[$index].created_at}}
+                                </time>
+                            </small>
+                        </cite></div>
+                        <div class="tweet-text">{{tweets[$index].text}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="tweet-container">-->
+    <!--<div class="scroll-down">-->
+        <!--<div ng-repeat="i in id track by $index">-->
+            <!--<div class="tweet" id="{{id[$index]}}">-->
+                <!--<div ng-class={{class}}>-->
+                    <!--<figure class="pull-left media-object">-->
+                        <!--<img class="img-thumbnail" src={{tweets[$index].user.profile_image_url}}>-->
+                    <!--</figure>-->
+                    <!--<div class="media-body">-->
+                        <!--<div class="media-heading"><cite> <span class="tweet.user.name">{{$index}}{{tweets[$index].user.name}}</span>-->
+                            <!--<small class="text-muted"><span-->
+                                    <!--class="screen_name">{{tweets[$index].user.screen_name}}</span>-->
+                                <!--<time class="time pull-right">-->
+                                    <!--{{tweets[$index].created_at}}-->
+                                <!--</time>-->
+                            <!--</small>-->
+                        <!--</cite></div>-->
+                        <!--<div class="tweet-text">{{tweets[$index].text}}-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+</body>
+</html>
