@@ -1,7 +1,6 @@
 package com.twitter.tasks;
 
 import com.google.common.collect.Lists;
-import com.twitter.processinglogic.TweetProcessor;
 import com.twitter.hbc.ClientBuilder;
 import com.twitter.hbc.core.Client;
 import com.twitter.hbc.core.Constants;
@@ -12,6 +11,7 @@ import com.twitter.hbc.core.event.Event;
 import com.twitter.hbc.core.processor.StringDelimitedProcessor;
 import com.twitter.hbc.httpclient.auth.Authentication;
 import com.twitter.hbc.httpclient.auth.OAuth1;
+import com.twitter.processinglogic.TweetProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
@@ -26,18 +26,21 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class TwitterStreamingTask implements ApplicationListener<ContextClosedEvent> {
 
+    private boolean shutdown;
+
+    private TweetProcessor tweetProcessor;
+
+    @Autowired
+    public TwitterStreamingTask(TweetProcessor tweetProcessor) {
+        this.tweetProcessor = tweetProcessor;
+    }
+
     /**
      * Task starts running after 5 seconds from starting the application
      * It runs in the background for the whole time of application execution
      */
-
-    private boolean shutdown;
-
-    @Autowired
-    private TweetProcessor tweetProcessor;
-
     @Scheduled(fixedDelay = 5000)
-    public void work() {
+    public void streamAndStoreTweets() {
         /** Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */
         BlockingQueue<String> msgQueue = new LinkedBlockingQueue<String>(10000);
         BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<Event>(1000);
@@ -80,6 +83,7 @@ public class TwitterStreamingTask implements ApplicationListener<ContextClosedEv
         }
     }
 
+    // Handle shutting down the application by interrupting while loop from streamAndStoreTweets method
     @Override
     public void onApplicationEvent(ContextClosedEvent contextClosedEvent) {
         shutdown = true;

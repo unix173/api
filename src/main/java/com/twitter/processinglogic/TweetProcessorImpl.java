@@ -57,6 +57,30 @@ public class TweetProcessorImpl implements TweetProcessor {
         return ret;
     }
 
+    @Override
+    public List<Feed> getOldestFeedsByNumberOfFeedsAndTimestamp(int number, long timestamp) {
+        List<Feed> ret = new ArrayList<Feed>();
+        Boolean add = false;
+        if (number < 1 || timestamp < 1) {
+            System.out.println("Number and timestmp must be greater than 1");
+            return ret;
+        }
+        for (Iterator<Feed> iterator = feeds.iterator(); iterator.hasNext() && number > 0; ) {
+            Feed feed = iterator.next();
+            if (feed.getTimestampMs() == timestamp && !add) {
+                System.out.println("Added");
+                ret.add(feed);
+                --number;
+                add = true;
+            }
+            if (add) {
+                ret.add(feed);
+                --number;
+            }
+        }
+        return ret;
+    }
+
     private Feed parseStringMessageAsFeed(String message) {
         Feed feed = null;
         try {

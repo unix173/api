@@ -21,7 +21,7 @@
     <beans>
         <task:annotation-driven scheduler="taskScheduler"/>
         <task:scheduler id="taskScheduler" pool-size="2"/>
-        <bean id="myTask" class="com.twitter.tasks.TwitterStreamingTask"/>
+        <bean id="twitterStreamingTask" class="com.twitter.tasks.TwitterStreamingTask"/>
     </beans>
 
 </beans>

@@ -30,7 +30,7 @@ public class Feed {
     private long timestampMs;
 
 
-    public void addaptFeedMessage(){
+    public void addaptFeedMessage() {
         setDateInCorrectFormat();
         removeNewLinesFromMessage();
     }
@@ -47,17 +47,14 @@ public class Feed {
         }
         sf = new SimpleDateFormat("dd MMM HH:mm:ss");
         this.createdAt = sf.format(date);
-        System.out.println("Parsed: " + createdAt + "to: " + this.createdAt);
     }
 
     private void removeNewLinesFromMessage() {
         String newText = text.replaceAll("\n", " ");
-        System.out.println(text);
-        System.out.println(newText);
         this.text = newText;
     }
 
-
-
-
+    public long getTimestampMs() {
+        return timestampMs;
+    }
 }

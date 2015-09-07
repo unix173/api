@@ -18,5 +18,7 @@ public interface TweetProcessor {
 
     List<Feed> getLatestFeedsByNumberOfFeeds(int number);
 
+    List<Feed> getOldestFeedsByNumberOfFeedsAndTimestamp(int number, long timestamp);
+
     void addFeed(String message);
 }

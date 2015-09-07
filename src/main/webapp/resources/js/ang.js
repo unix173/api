@@ -10,7 +10,7 @@ app.controller("AppController", function ($scope, $http, $interval) {
     $scope.tweets = [];
 
     $interval(function getNewDataAndAppendToFeedArray() {
-        $http.get('http://localhost:8080/api/oldest/5').
+        $http.get('http://localhost:8080/api/oldestRm/5').
             success(function (data, status, headers, config) {
                 feedArray = feedArray.concat(data);
             }).
@@ -23,6 +23,7 @@ app.controller("AppController", function ($scope, $http, $interval) {
         if (feedArray.length > 0) {
             $scope.tweets.push(feedArray[0]);
             feedArray.shift();
+            $scope.$apply();
             if ($scope.tweets.length > 5) {
                 $scope.tweets.shift();
             }

@@ -1,7 +1,7 @@
 package com.twitter.controller;
 
-import com.twitter.processinglogic.TweetProcessor;
 import com.twitter.model.Feed;
+import com.twitter.processinglogic.TweetProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,13 +23,30 @@ public class TwitterRestController {
      *
      * @return
      */
-    @Autowired
+
     private TweetProcessor tweetProcessor;
+
+    @Autowired
+    public TwitterRestController(TweetProcessor tweetProcessor) {
+        this.tweetProcessor = tweetProcessor;
+    }
 
     @RequestMapping(value = "/complete", produces = "application/json")
     public Deque<Feed> getAllFeeds() {
         return tweetProcessor.getFeeds();
-}
+    }
+
+    /**
+     * Method returns list of all items added so far
+     * After returning all items, the list is cleared
+     *
+     * @return
+     */
+    @RequestMapping(value = "/completeRm", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Feed> getListOfFeeds() {
+        return tweetProcessor.getListOfFeedsAndClearMemory();
+    }
+
 
     /**
      * Method returns specified number of latest items
@@ -51,21 +68,15 @@ public class TwitterRestController {
      * @param number
      * @return
      */
-    @RequestMapping(value = "/oldest/{number}", produces = "application/json")
+    @RequestMapping(value = "/oldestRm/{number}", produces = "application/json")
     public List<Feed> getOldestFeedsByNumberOfFeeds(@PathVariable("number") int number) {
         return tweetProcessor.getOldestByNumberAndRemoveThem(number);
     }
 
-    /**
-     * Method returns list of all items added so far
-     * After returning all items, the list is cleared
-     *
-     * @return
-     */
-    @RequestMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Feed> getListOfFeeds() {
-        return tweetProcessor.getListOfFeedsAndClearMemory();
-    }
 
+    @RequestMapping(value = "/oldestTs/{number}/{timestamp}", produces = "application/json")
+    public List<Feed> getOldestFeedsByNumberOfFeedsAndTimestamp(@PathVariable("number") int number, @PathVariable("timestamp") long timestamp) {
+        return tweetProcessor.getOldestFeedsByNumberOfFeedsAndTimestamp(number, timestamp);
+    }
 
 }
