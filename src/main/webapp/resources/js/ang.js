@@ -11,10 +11,10 @@ app.controller("AppController", function ($scope, $http, $interval) {
 
     $interval(function getNewDataAndAppendToFeedArray() {
         $http.get('http://localhost:8080/api/oldestRm/5').
-            success(function (data, status, headers, config) {
+            success(function (data) {
                 feedArray = feedArray.concat(data);
             }).
-            error(function (data, status, headers, config) {
+            error(function (data) {
                 alert("Error");
             });
     }, 5000);

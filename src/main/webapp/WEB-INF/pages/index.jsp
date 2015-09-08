@@ -12,21 +12,21 @@
 
 <body ng-controller="AppController">
 
-<div ng-repeat="tweet in tweets" class="fontana scroll-down">
-    <div ng-class="message media well col-md-6 col-md-offset-3 focus">
+<div class="fontana scroll-down">
+    <div id="msg0" ng-class="{ active: user.id == activeId }">
         <figure class="pull-left media-object">
-            <img class="img-thumbnail" ng-src={{tweet.user.profile_image_url}}>
+            <img ng-src={{tweet.user.profile_image_url}} width="64" height="64" alt=""
+                                                    class="avatar img-thumbnail">
         </figure>
         <div class="media-body">
-            <div class="media-heading"><cite> <span class="tweet.user.name">{{tweet.user.name}}</span>
+            <div class="media-heading"><cite> <span class="name">{{tweet.user.name}}</span>
                 <small class="text-muted"><span class="screen_name">{{tweet.user.screen_name}}</span>
-                    <time class="time pull-right">
-                        {{tweet.created_at}}
+                    <time class="time pull-right"
+                          data-time="Mon Sep 07 2015 16:51:07 GMT+0200 (W. Europe Daylight Time)">{{tweet.created_at}}
                     </time>
                 </small>
             </cite></div>
-            <div class="text lead">{{tweet.text}}
-            </div>
+            <div class="text lead">{{tweet.text}}</div>
         </div>
     </div>
 </div>
