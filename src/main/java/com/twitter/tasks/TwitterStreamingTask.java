@@ -26,7 +26,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class TwitterStreamingTask implements ApplicationListener<ContextClosedEvent> {
 
-    private boolean shutdown;
+    private volatile boolean shutdown;
 
     private TweetProcessor tweetProcessor;
 

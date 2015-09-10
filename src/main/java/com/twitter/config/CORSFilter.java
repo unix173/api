@@ -18,9 +18,7 @@ import java.io.IOException;
 /**
  * Used to allow cross origin access on GET request
  */
-public class CORSFilter extends OncePerRequestFilter
-
-{
+public class CORSFilter extends OncePerRequestFilter {
     private static final Log LOG = LogFactory.getLog(CORSFilter.class);
 
     @Override
@@ -29,9 +27,7 @@ public class CORSFilter extends OncePerRequestFilter
 
         if (request.getHeader("Access-Control-Request-Method") != null && "OPTIONS".equals(request.getMethod())) {
             LOG.trace("Sending Header....");
-            // CORS "pre-flight" request
             response.addHeader("Access-Control-Allow-Methods", "GET");
-//			response.addHeader("Access-Control-Allow-Headers", "Authorization");
             response.addHeader("Access-Control-Allow-Headers", "Content-Type");
             response.addHeader("Access-Control-Max-Age", "1");
         }

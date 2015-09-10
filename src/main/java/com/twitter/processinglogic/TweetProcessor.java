@@ -21,4 +21,6 @@ public interface TweetProcessor {
     List<Feed> getOldestFeedsByNumberOfFeedsAndTimestamp(int number, long timestamp);
 
     void addFeed(String message);
+
+    void clearMemory();
 }

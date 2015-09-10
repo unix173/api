@@ -1,35 +1,40 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
-
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/ang.js"></script>
+    <title>Twitter Wall Streamin API</title>
 </head>
+<body>
+<h1 align="center">Twitter Wall API</h1>
 
-<body ng-controller="AppController">
+<div align="center">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p>
+        <strong>/api/complete</strong> - Returns collection of twets
+    </p>
 
-<div class="fontana scroll-down">
-    <div id="msg0" ng-class="{ active: user.id == activeId }">
-        <figure class="pull-left media-object">
-            <img ng-src={{tweet.user.profile_image_url}} width="64" height="64" alt=""
-                                                    class="avatar img-thumbnail">
-        </figure>
-        <div class="media-body">
-            <div class="media-heading"><cite> <span class="name">{{tweet.user.name}}</span>
-                <small class="text-muted"><span class="screen_name">{{tweet.user.screen_name}}</span>
-                    <time class="time pull-right"
-                          data-time="Mon Sep 07 2015 16:51:07 GMT+0200 (W. Europe Daylight Time)">{{tweet.created_at}}
-                    </time>
-                </small>
-            </cite></div>
-            <div class="text lead">{{tweet.text}}</div>
-        </div>
-    </div>
+    <p>
+        <strong>/api/completeRm</strong> - Returns collection of twets and clears collection
+    </p>
+
+    <p>
+        <strong>/api/oldestRm/{number}</strong> - Returns collection of oldest elements, sized by the number specified.
+        Returned elements
+        are removed from collection
+    </p>
+
+    <p>
+        <strong>/api/latest/{number}</strong> - Returns collection of newest elements, sized by the number specified.
+    </p>
+
+    <p>
+        <strong>/api/oldestTs/{number}/{timestamp}</strong> - Returns collection of oldest elements by specified
+        timestamp,
+        sized by the
+        number specified.
+    </p>
 </div>
-
 </body>
 </html>

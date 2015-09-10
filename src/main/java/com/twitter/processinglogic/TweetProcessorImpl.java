@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 @Component
 public class TweetProcessorImpl implements TweetProcessor {
 
-    private static Deque<Feed> feeds = new ConcurrentLinkedDeque<Feed>();
+    private Deque<Feed> feeds = new ConcurrentLinkedDeque<Feed>();
 
     @Override
     public Deque<Feed> getFeeds() {
@@ -96,6 +96,17 @@ public class TweetProcessorImpl implements TweetProcessor {
     public void addFeed(String message) {
         Feed feed = parseStringMessageAsFeed(message);
         feeds.add(feed);
+    }
+
+    @Override
+    public void clearMemory() {
+        System.out.println("Memory check executed");
+        int size = feeds.size();
+        System.out.println("Size: " + size);
+        if (size > 150) {
+            feeds.clear();
+            System.out.println("Memory cleared");
+        }
     }
 
 

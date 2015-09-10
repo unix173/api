@@ -22,6 +22,7 @@
         <task:annotation-driven scheduler="taskScheduler"/>
         <task:scheduler id="taskScheduler" pool-size="2"/>
         <bean id="twitterStreamingTask" class="com.twitter.tasks.TwitterStreamingTask"/>
+        <bean id="memoryCheckerTask" class="com.twitter.tasks.MemoryCheckerTask"/>
     </beans>
 
 </beans>

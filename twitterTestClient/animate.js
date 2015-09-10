@@ -21,7 +21,7 @@ app.controller("AppController", function ($scope, $http, $interval) {
                 feedArray = feedArray.concat(data);
             }).
             error(function error() {
-                alert("Error");
+                console.log("No connection");
             });
     }, 5000);
 
